@@ -1,6 +1,8 @@
 package com.example.calculainteres
 
 import android.animation.ValueAnimator
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.view.animation.BounceInterpolator
@@ -9,13 +11,20 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -37,7 +46,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rbTipoInteresCompuesto: MaterialRadioButton
     private lateinit var frequencySpinner: MaterialAutoCompleteTextView
     private lateinit var frequencyInputLayout: TextInputLayout
-    private lateinit var chart: LineChart
+
+    // Cambiar declaración del chart
+    private lateinit var chart: PieChart
+
+    // Variables para almacenar valores
+    private var currentPrincipal: Double = 0.0
+    private var currentGain: Double = 0.0
 
     private val df = DecimalFormat("#,##0.00")
     private val compoundingFrequencies = arrayOf("Diaria", "Mensual", "Trimestral", "Anual")
@@ -83,11 +98,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupChart() {
         chart.description.isEnabled = false
-        chart.xAxis.position = XAxis.XAxisPosition.BOTTOM
-        chart.axisRight.isEnabled = false
+        chart.setUsePercentValues(false)
+        chart.setEntryLabelColor(Color.BLACK)
+        chart.setEntryLabelTextSize(12f)
         chart.legend.isEnabled = true
-        chart.setTouchEnabled(true)
-        chart.setPinchZoom(true)
+        chart.setHoleColor(Color.TRANSPARENT)
+        chart.setTransparentCircleAlpha(0)
+        chart.setDrawEntryLabels(true)
+        chart.setEntryLabelTextSize(14f)
+        chart.setDrawCenterText(true)
+        chart.centerText = "Rendimiento"
     }
 
     private fun setupRadioButtons() {
@@ -176,11 +196,15 @@ class MainActivity : AppCompatActivity() {
 
         if (rbTipoInteresSimple.isChecked) {
             val interest = principal * rate * (days / 365.0)
+            currentPrincipal = principal
+            currentGain = interest
             updateUI(principal + interest, interest)
         } else {
             val frequency = frequencyDays[frequencySpinner.text.toString()] ?: 365
             val periods = days.toDouble() / frequency
             val amount = principal * (1 + rate / frequency).pow(periods * frequency)
+            currentPrincipal = principal
+            currentGain = amount - principal
             updateUI(amount, amount - principal)
         }
     }
@@ -204,30 +228,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateChart() {
-        val entries = ArrayList<Entry>()
-        val principal = etCantidadInicial.text.toString().toDouble()
-        val rate = etTasaInteres.text.toString().toDouble() / 100
-        val days = etPlazo.text.toString().toInt()
+        val entries = ArrayList<PieEntry>().apply {
+            add(PieEntry(currentPrincipal.toFloat(), "Inicial"))
+            add(PieEntry(currentGain.toFloat(), "Ganancia"))
+        }
 
-        for (i in 0..days step 30) {
-            val amount = if (rbTipoInteresSimple.isChecked) {
-                principal * (1 + rate * (i / 365.0))
-            } else {
-                val frequency = frequencyDays[frequencySpinner.text.toString()] ?: 365
-                val periods = i.toDouble() / frequency
-                principal * (1 + rate / frequency).pow(periods * frequency)
+        val dataSet = PieDataSet(entries, "").apply {
+            colors = listOf(
+                ContextCompat.getColor(this@MainActivity, R.color.green_500),
+                ContextCompat.getColor(this@MainActivity, R.color.profits)
+            )
+            valueTextColor = Color.WHITE
+            valueTextSize = 16f
+            setDrawValues(true)
+            valueFormatter = object : ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    return "$${df.format(value.toDouble())}"
+                }
             }
-            entries.add(Entry(i.toFloat(), amount.toFloat()))
         }
 
-        val dataSet = LineDataSet(entries, "Crecimiento de la inversión").apply {
-            color = resources.getColor(R.color.green_500)
-            valueTextColor = resources.getColor(R.color.primary)
-            lineWidth = 2f
+        chart.data = PieData(dataSet).apply {
+            setValueTextSize(14f)
+            setValueTypeface(Typeface.DEFAULT_BOLD)
         }
-
-        chart.data = LineData(dataSet)
         chart.invalidate()
+        chart.animateY(1000, Easing.EaseInOutQuad)
     }
 
     private fun clearInputs() {
@@ -240,6 +266,8 @@ class MainActivity : AppCompatActivity() {
         rbTipoInteresSimple.isChecked = true
         frequencyInputLayout.visibility = View.GONE
         etCantidadInicial.requestFocus()
+        currentPrincipal = 0.0
+        currentGain = 0.0
     }
 
     private fun resetChart() {
