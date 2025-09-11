@@ -1,7 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.CalculaInteres" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Personaliza colores -->
+        <item name="colorPrimary">@color/dark_primary</item>
+        <item name="colorPrimaryVariant">@color/dark_primaryVariant</item>
+        <item name="colorSecondary">@color/dark_secondary</item>
+        <item name="android:windowBackground">@color/dark_background</item>
+        <item name="colorSurface">@color/dark_surface</item>
+
+        <!-- Colores de texto -->
+        <item name="android:textColorPrimary">@color/dark_onBackground</item>
+        <item name="android:textColorSecondary">#01579B</item>
+
+        <!-- Personalización adicional -->
+        <item name="materialButtonStyle">@style/Widget.Button.Dark</item>
+    </style>
+
+    <!-- Estilo para botones en modo oscuro -->
+    <style name="Widget.Button.Dark" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/dark_primary</item>
+        <item name="android:textColor">@color/dark_onPrimary</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:textColor">@color/dark_onBackground</item>
     </style>
 </resources>

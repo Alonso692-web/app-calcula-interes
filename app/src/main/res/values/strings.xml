@@ -8,4 +8,5 @@
     <string name="etiqueta_checkbox_interes_compuesto">Interés Compuesto</string>
     <string name="etiqueta_boton_limpiar">Limpiar</string>
     <string name="etiqueta_boton_calcular">Calcular</string>
+    <string name="etiqueta_movimientos">Movimientos</string>
 </resources>

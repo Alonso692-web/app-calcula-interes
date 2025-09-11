@@ -2,8 +2,13 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.CalculaInteres" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorError">@color/error_red</item>
     </style>
 
     <style name="Theme.CalculaInteres" parent="Base.Theme.CalculaInteres" />
+
+    <!-- NUEVO ESTILO PARA CAMPOS DE TEXTO (TEMA CLARO) -->
+    <style name="Widget.App.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:textColor">@color/navy_blue</item>
+    </style>
 </resources>
