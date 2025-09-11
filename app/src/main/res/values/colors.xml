@@ -6,4 +6,14 @@
     <color name="green_500">#4CAF50</color>
     <color name="surface_variant">#F5F5F5</color>
     <color name="profits">#FF6F00</color>
+    <color name="error_red">#D32F2F</color>
+
+    <color name="dark_primary">#BB86FC</color>
+    <color name="dark_primaryVariant">#3700B3</color>
+    <color name="dark_secondary">#03DAC6</color>
+    <color name="dark_background">#121212</color>
+    <color name="dark_surface">#1E1E1E</color>
+    <color name="dark_onPrimary">#000000</color>
+    <color name="dark_onSecondary">#000000</color>
+    <color name="dark_onBackground">#FFFFFF</color>
 </resources>
