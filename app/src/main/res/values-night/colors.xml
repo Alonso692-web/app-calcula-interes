@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="primary">#2E7D32</color>
-    <color name="green_500">#4CAF50</color>
-    <color name="surface_variant">#F5F5F5</color>
-    <color name="profits">#FF6F00</color>
-    <color name="error_red">#D32F2F</color>
-
     <color name="dark_primaryVariant">#1B5E20</color>
     <color name="dark_secondary">#4CAF50</color>
     <color name="dark_background">#121212</color>
     <color name="dark_surface">#1E1E1E</color>
     <color name="dark_onPrimary">#FFFFFF</color>
     <color name="dark_onSecondary">#FFFFFF</color>
+    <!-- CAMBIO AQUÍ: De gris a azul claro -->
+    <color name="dark_onBackground">#B3E5FC</color>
     <!-- NUEVO COLOR -->
     <color name="navy_blue">#000080</color>
 
     <!-- Paleta de Colores para Modo Oscuro -->
     <color name="dark_primary">#2E7D32</color>
-    ...
-    <color name="dark_onBackground">#B3E5FC</color>
 </resources>

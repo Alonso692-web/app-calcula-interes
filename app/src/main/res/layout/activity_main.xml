@@ -8,7 +8,6 @@
     android:background="@drawable/gradient_background"
     tools:context=".MainActivity">
 
-    <!-- El resto del layout no cambia... -->
     <TextView
         android:id="@+id/titleText"
         android:layout_width="0dp"
@@ -90,7 +89,7 @@
                     <!-- CAMPO CANTIDAD INICIAL -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/amountInputLayout"
-                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        style="@style/Widget.App.TextInputLayout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:errorIconDrawable="@drawable/ic_error"
@@ -109,7 +108,7 @@
                             android:textSize="18sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- NUEVO: TEXTVIEW PARA EL ERROR DE CANTIDAD -->
+                    <!-- TEXTVIEW PARA EL ERROR DE CANTIDAD -->
                     <TextView
                         android:id="@+id/tvAmountError"
                         android:layout_width="0dp"
@@ -126,7 +125,7 @@
                     <!-- CAMPO TASA DE INTERÉS -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/rateInputLayout"
-                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        style="@style/Widget.App.TextInputLayout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -146,7 +145,7 @@
                             android:textSize="18sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- NUEVO: TEXTVIEW PARA EL ERROR DE TASA -->
+                    <!-- TEXTVIEW PARA EL ERROR DE TASA -->
                     <TextView
                         android:id="@+id/tvRateError"
                         android:layout_width="0dp"
@@ -163,7 +162,7 @@
                     <!-- CAMPO PLAZO -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/daysInputLayout"
-                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        style="@style/Widget.App.TextInputLayout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -183,7 +182,7 @@
                             android:textSize="18sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- NUEVO: TEXTVIEW PARA EL ERROR DE PLAZO -->
+                    <!-- TEXTVIEW PARA EL ERROR DE PLAZO -->
                     <TextView
                         android:id="@+id/tvDaysError"
                         android:layout_width="0dp"
@@ -248,7 +247,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- El resto del layout (gráfica, etc.) no cambia -->
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/chart"
                 android:layout_width="match_parent"

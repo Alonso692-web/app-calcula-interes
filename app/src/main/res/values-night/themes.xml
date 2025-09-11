@@ -9,7 +9,7 @@
 
         <!-- Colores de texto -->
         <item name="android:textColorPrimary">@color/dark_onBackground</item>
-        <item name="android:textColorSecondary">#B3FFFFFF</item>
+        <item name="android:textColorSecondary">#01579B</item>
 
         <!-- Personalización adicional -->
         <item name="materialButtonStyle">@style/Widget.Button.Dark</item>
@@ -19,5 +19,9 @@
     <style name="Widget.Button.Dark" parent="Widget.Material3.Button">
         <item name="backgroundTint">@color/dark_primary</item>
         <item name="android:textColor">@color/dark_onPrimary</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:textColor">@color/dark_onBackground</item>
     </style>
 </resources>
