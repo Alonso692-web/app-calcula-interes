@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Rendimiento+</string>
+    <string name="etiqueta_nombre_app">Calculadora de Inversiones 📈</string>
+    <string name="etiqueta_cantidad_inicial">Cantidad inicial</string>
+    <string name="etiqueta_tasa_de_interes">Tasa de interés anual</string>
+    <string name="etiqueta_plazo">Plazo (días)</string>
+    <string name="etiqueta_checkbox_interes_simple">Interés Simple</string>
+    <string name="etiqueta_checkbox_interes_compuesto">Interés Compuesto</string>
+    <string name="etiqueta_boton_limpiar">Limpiar</string>
+    <string name="etiqueta_boton_calcular">Calcular</string>
 </resources>
